@@ -1,0 +1,20 @@
+language: node_js
+install:
+  - npm install
+branches:
+  only:
+    - master
+script:
+  - wget http://203.104.209.102/kcs2/js/main.js
+  - npx js-beautify main.js -o main.formated.js
+deploy:
+  provider: pages
+  name: MZI
+  email: macchenjl@foxmail.com
+  github_token: $GITHUB_TOKEN
+  skip-cleanup: true
+  keep-history: true
+  local-dir:
+    - main.formated.js
+  on:
+    branch: master

@@ -7,8 +7,9 @@ branches:
   only:
     - master
 script:
+  - mkdir output
   - wget http://203.104.209.102/kcs2/js/main.js
-  - npx js-beautify main.js -o main.formated.js
+  - npx js-beautify main.js -o output/main.formated.js
 deploy:
   provider: pages
   name: MZI
@@ -16,7 +17,6 @@ deploy:
   github_token: $GITHUB_TOKEN
   skip-cleanup: true
   keep-history: true
-  local-dir:
-    - main.formated.js
+  local-dir: output
   on:
     branch: master
